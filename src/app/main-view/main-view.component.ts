@@ -12,13 +12,13 @@ export class MainViewComponent implements OnInit {
   countries: Country[] = [];
   private httpClient: HttpClient;
   dtOptions: DataTables.Settings = {};
-  currentPage: number = 1;
-  currentIndex: number = 10;
+  currentPage: number = 0;
+  currentIndex: number = 0;
 
   currentCountries: any[] = [];
 
-  totalPages: number = 0;
-  totalItems: number = 10;
+  totalPages: Number = 0;
+  totalItems: number = 0;
 
   constructor(private _httpClient: HttpClient) {
     this.httpClient = _httpClient;
@@ -28,8 +28,10 @@ export class MainViewComponent implements OnInit {
     this.httpClient.get(`${environment.baseUrl}all`).subscribe((data) => {
       this.countries = data as Country[];
       this.totalItems = this.countries.length;
+      this.currentIndex = 10;
+      this.currentPage = 1;
       this.currentCountries = this.countries.slice(0, this.currentIndex);
-      this.totalPages = this.countries.length / 10;
+      this.totalPages = Math.trunc(this.countries.length / 10);
     });
   }
 
@@ -57,8 +59,15 @@ export class MainViewComponent implements OnInit {
   }
 
   search(e: any): void {
-    this.currentCountries = this.countries.filter((item) =>
-      item.name.toLowerCase().toString().includes(e.target.value)
+    const searchRes = this.countries.filter((item) =>
+      item.name.toLowerCase().toString().includes(e.target.value.toLowerCase())
     );
+
+    this.totalItems = searchRes.length;
+    this.currentIndex = 10;
+    this.currentPage = 1;
+    this.currentCountries = searchRes.slice(0, this.currentIndex);
+    this.totalPages = Math.trunc(searchRes.length / 10) ;
+  
   }
 }

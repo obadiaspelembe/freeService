@@ -1,0 +1,50 @@
+<div>
+  <div>
+    <h1>Bem-vindo ao FreeCountrie</h1>
+  </div>
+  <div>
+    <form>
+      <input (keyup)="search($event)" placeholder="Pesquise pelo nome" type="text" />
+    </form>
+    <div>
+      <p>
+        Listando <strong>10 </strong> Items da página
+        <strong> {{ currentPage }} </strong> de
+        <strong>{{ totalPages }}</strong> Páginas
+      </p>
+
+      <table>
+        <thead>
+          <tr>
+            <th>Nome</th>
+            <th>Capital</th>
+            <th>Regiäo</th>
+            <th>Subregiäo</th>
+            <th>Populaçäo</th>
+            <th>Área</th>
+            <th>Fuso horário</th>
+            <th>Nome nativo</th>
+            <th>Bandeira</th>
+            <th></th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let country of currentCountries">
+            <td>{{ country.name }}</td>
+            <td>{{ country.capital }}</td>
+            <td>{{ country.region }}</td>
+            <td>{{ country.subregion }}</td>
+            <td>{{ country.population }}</td>
+            <td>{{ country.area }}</td>
+            <td>{{ country.timezones[0] }}</td>
+            <td>{{ country.nativeName }}</td>
+            <td><img src="{{ country.flag }}" width="14" /></td>
+            <td><a href="#">Ver</a></td>
+          </tr>
+        </tbody>
+      </table>
+      <button (click)="getPrevious()">Anterior</button>
+      <button (click)="getNext()">Próximo</button>
+    </div>
+  </div>
+</div>

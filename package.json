@@ -1,6 +1,7 @@
 {
   "name": "dev-challenge",
   "version": "0.0.0",
+  "author": "Obadias Pelembe",
   "scripts": {
     "ng": "ng",
     "start": "ng serve",

@@ -44,15 +44,15 @@ button {
 }
 .xml {
   margin-right: 0.2rem;
-  background-color: #40bdf7;
+  background-color: #400db6;
 }
 .csv {
   margin-right: 0.2rem;
-  background-color: #d0e41b;
+  background-color: #400db6;
 }
 .xlsx {
   margin-right: 0.2rem;
-  background-color: #40f771;
+  background-color: #400db6;
 }
 
 input {

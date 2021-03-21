@@ -1,12 +1,21 @@
-<div>
-  <div>
-    <h1>Bem-vindo ao FreeCountrie</h1>
-  </div>
-  <div>
+<div class="container">
+  <div class="header">
+    <h2>Bem-vindo ao FreeCountrie</h2>
     <form>
-      <input (keyup)="search($event)" placeholder="Pesquise pelo nome" type="text" />
+      <input
+        (keyup)="search($event)"
+        placeholder="Pesquise pelo nome"
+        type="text"
+      />
     </form>
+  </div>
+  <div class="body">
     <div>
+      <div>
+        <button class="xlsx" (click)="exportElmToExcel()">Exportar XLSX</button>
+        <button class="csv" (click)="exportElmToCSV()">Exportar CSV</button>
+        <button class="xml" (click)="exportElmToXML()">Exportar XML</button>
+      </div>
       <p>
         Listando <strong>10 </strong> Items da página
         <strong> {{ currentPage }} </strong> de
@@ -39,12 +48,44 @@
             <td>{{ country.timezones[0] }}</td>
             <td>{{ country.nativeName }}</td>
             <td><img src="{{ country.flag }}" width="14" /></td>
-            <td><a href="#">Ver</a></td>
+            <td><a href="{{ country.flag }}">Ver Bandeira</a></td>
           </tr>
         </tbody>
       </table>
-      <button (click)="getPrevious()">Anterior</button>
-      <button (click)="getNext()">Próximo</button>
+      <div class="pagination">
+        <button class="prev" (click)="getPrevious()">Anterior</button>
+        <button class="next" (click)="getNext()">Próximo</button>
+      </div>
     </div>
   </div>
+
+  <!-- Display None table for export -->
+  <table #countryTable style="display: none">
+    <thead>
+      <tr>
+        <th>Nome</th>
+        <th>Capital</th>
+        <th>Regiäo</th>
+        <th>Subregiäo</th>
+        <th>Populaçäo</th>
+        <th>Área</th>
+        <th>Fuso horário</th>
+        <th>Nome nativo</th>
+        <th>Bandeira</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let country of countries">
+        <td>{{ country.name }}</td>
+        <td>{{ country.capital }}</td>
+        <td>{{ country.region }}</td>
+        <td>{{ country.subregion }}</td>
+        <td>{{ country.population }}</td>
+        <td>{{ country.area }}</td>
+        <td>{{ country.timezones[0] }}</td>
+        <td>{{ country.nativeName }}</td>
+        <td>{{ country.flag }}</td>
+      </tr>
+    </tbody>
+  </table>
 </div>

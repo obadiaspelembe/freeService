@@ -5,7 +5,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { HttpClientModule } from '@angular/common/http';
 import { MainViewComponent } from './main-view/main-view.component';
-import { DataTablesModule } from "angular-datatables";
+import { ExportService } from './services/export.service';
 
 
 @NgModule({
@@ -15,11 +15,10 @@ import { DataTablesModule } from "angular-datatables";
   ],
   imports: [
     BrowserModule,
-    HttpClientModule,
-    DataTablesModule,
+    HttpClientModule, 
     AppRoutingModule
   ],
-  providers: [],
+  providers: [ExportService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

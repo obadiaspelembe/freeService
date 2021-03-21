@@ -1,7 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { environment } from 'src/environments/environment';
 import { Country } from './country';
+import { ExportService } from '../services/export.service';
 
 @Component({
   selector: 'app-main-view',
@@ -11,7 +12,6 @@ import { Country } from './country';
 export class MainViewComponent implements OnInit {
   countries: Country[] = [];
   private httpClient: HttpClient;
-  dtOptions: DataTables.Settings = {};
   currentPage: number = 0;
   currentIndex: number = 0;
 
@@ -20,7 +20,12 @@ export class MainViewComponent implements OnInit {
   totalPages: Number = 0;
   totalItems: number = 0;
 
-  constructor(private _httpClient: HttpClient) {
+  @ViewChild('countryTable') countryTable: ElementRef | undefined;
+
+  constructor(
+    private _httpClient: HttpClient,
+    private exportService: ExportService
+  ) {
     this.httpClient = _httpClient;
   }
 
@@ -67,7 +72,34 @@ export class MainViewComponent implements OnInit {
     this.currentIndex = 10;
     this.currentPage = 1;
     this.currentCountries = searchRes.slice(0, this.currentIndex);
-    this.totalPages = Math.trunc(searchRes.length / 10) ;
-  
+    this.totalPages = Math.trunc(searchRes.length / 10);
+  }
+
+  /**
+   * Function prepares data to pass to export service to create excel from Table DOM reference
+   *
+   */
+  exportElmToExcel(): void {
+    if (this.countryTable)
+      this.exportService.exportTableElmToExcel(
+        this.countryTable,
+        'countries-xlsx'
+      );
+  }
+  exportElmToCSV(): void {
+    if (this.countryTable)
+      this.exportService.exportTableElmToExcel(
+        this.countryTable,
+        'countries-csv',
+        '.csv'
+      );
+  }
+  exportElmToXML(): void {
+    if (this.countryTable)
+      this.exportService.exportTableElmToExcel(
+        this.countryTable,
+        'countries-xml',
+        '.xml'
+      );
   }
 }

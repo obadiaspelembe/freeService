@@ -1,25 +1,65 @@
-table {
-  margin: 1rem;
+.container {
+  width: 97vw;
+  max-height: 90vh;
 }
+
+.header {
+  width: 100%;
+  height: 20%;
+  background: #0b1b24;
+  display: block;
+  justify-content: flex-start;
+  padding: 1rem;
+  align-items: center;
+  color: #fff;
+}
+
+.body {
+  max-height: 80%;
+  padding: 1.5rem;
+}
+
 table td,
 th {
   min-width: 4cm !important;
-  height: 1.5rem !important;
+  height: 1.8rem !important;
   border-bottom: 1px solid #fff000;
 }
 
 button {
   border: none;
-  background-color: #ff8723;
-  margin: 0.5rem;
   padding: 0.5rem;
   color: #fff;
   width: 10rem;
+  margin-top: 1rem;
+}
+
+.prev {
+  margin-right: 0.2rem;
+  background-color: #0a74c4;
+}
+.next {
+  margin-right: 0.2rem;
+  background-color: #40f771;
+}
+.xml {
+  margin-right: 0.2rem;
+  background-color: #40bdf7;
+}
+.csv {
+  margin-right: 0.2rem;
+  background-color: #d0e41b;
+}
+.xlsx {
+  margin-right: 0.2rem;
+  background-color: #40f771;
 }
 
 input {
-  width: 10rem;
-  height: 0.7rem;
+  width: 12rem;
+  height: 1rem;
   padding: 0.5rem;
   margin: 0.5rem;
+  border-radius: 0%;
+  border: none;
 }
